@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav">
+
+            <div class="titulo">
+                <h2 onclick="inial()">Tênis de Mesa</h2>
+            </div>
+
+            <div class="botoes">
+                <button class="Blogin">Login</button>
+                <button class="Bcadastro">Cadastro</button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <div class="login">
+        <div class="fundo">
+            <img src="logoPing.png" alt="">
+            <h1>Bem-vindo de volta!</h1>
+            <p>Entre com sua conta para acessar conteúdo</p>
+
+            <div class="email">
+                <h4>Email:</h4>
+                <input type="text" id="input_email">
+            </div>
+
+            <div class="senha">
+                <h4>Senha:</h4>
+                <input type="text" id="input_senha">
+            </div>
+
+            <div class="botoes btnLogin">
+                <button>Login</button>
+            </div>
+
+            <p>Não tem uma conta? <a href="pagCadastro.html">Cadastre-se já</a></p>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    function inial(){
+        window.location.href = './pagInicial.html'
+    }
+</script>
