@@ -25,8 +25,8 @@
             </div>
 
             <div class="botoes">
-                <button class="Blogin">Login</button>
-                <button class="Bcadastro">Cadastro</button>
+                <button onclick="login()" class="Blogin">Login</button>
+                <button onclick="cadastro()" class="Bcadastro">Cadastro</button>
             </div>
 
         </div>
@@ -153,3 +153,12 @@
 </body>
 
 </html>
+
+<script>
+    function login (){
+        window.location.href = './pagLogin.html'
+    }
+    function cadastro (){
+        window.location.href = './pagCadastro.html'
+    }
+</script>
