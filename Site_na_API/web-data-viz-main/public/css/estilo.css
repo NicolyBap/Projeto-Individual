@@ -12,7 +12,6 @@ body {
   --tamanho-banner: calc(100vh - var(--tamanho-header));
   --tamanho-simulador: calc(100vh - var(--tamanho-header));
   --tamanho-login: calc(100vh - var(--tamanho-header));
-
 }
 
 .container {
@@ -94,82 +93,6 @@ button {
   margin: 0;
 }
 
-/* BANNER */
-
-.banner {
-  height: var(--tamanho-banner);
-  color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
-}
-
-.banner .container {
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.banner .container p {
-  width: 50%;
-  margin: 0;
-  padding: 0;
-  font-size: 36px;
-}
-
-.banner .container span {
-  font-weight: 800;
-}
-
-/* MISSÃO VISÃO VALORES */
-
-.social {
-  background-color: #e5e5e5;
-  display: flex;
-}
-
-.social .container {
-  justify-content: center;
-}
-
-.box img {
-  width: 170px;
-}
-
-.social .container .boxes {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 30px 0;
-}
-
-.social p {
-  text-align: center;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* FOOTER */
-
-.footer {
-  background-color: #32b9cd;
-  height: 150px;
-  color: #fff;
-  display: flex;
-  font-size: 15px;
-}
-
-.footer .container {
-  justify-content: center;
-  text-align: center;
-}
-
-.footer .container .version {
-  font-size: 12px;
-}
 
 /* LOGIN */
 
@@ -346,17 +269,6 @@ input {
   width: 50px;
 }
 
-/* SIMULADOR */
-
-.simulador {
-  color: white;
-}
-
-.simulador .container {
-  flex-direction: column;
-  overflow: scroll;
-  height: var(--tamanho-simulador);
-}
 
 /* ALERTA */
 
