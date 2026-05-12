@@ -56,6 +56,10 @@
             <input onchange="email()" id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
           <div class="campo">
+            <span>Gênero:</span>
+            <input id="genero_input" type="text" placeholder="Gênero que se identifica" />
+          </div>
+          <div class="campo">
             <span>Senha:</span>
             <input onchange="senha()" id="senha_input" type="password" placeholder="******" />
           </div>
@@ -145,6 +149,7 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var generovar = genero_input.value;
 
     email();
     senha();
@@ -154,7 +159,9 @@
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == ""
+      confirmacaoSenhaVar == "" ||
+      generovar == ""
+
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Algum campo em branco!";
@@ -187,6 +194,7 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
+        generoServer: generovar,
       }),
     })
       .then(function (resposta) {
