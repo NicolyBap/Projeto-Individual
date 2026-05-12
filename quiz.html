@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tênis de mesa | Quiz</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./quiz.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logoPing.png" alt="">
+            <h2>Tênis de Mesa</h2>
+        </div>
+
+        <div class="menu">
+            <button class="btn" onclick="location.href='../quiz.html'">Quiz</button>
+            <button class="btn" onclick="location.href='../dash.html'">Dashboard</button>
+        </div>
+
+        <button class="btn">Sair</button>
+    </div>
+
+    <div class="areaQuizz">
+
+        <section class="quiz" onload="onloadEsconder()">
+
+            <main class="quiz-area">
+
+                <div class="intro">
+                    <h1>Quiz Tênis de Mesa</h1>
+                    <p>
+                        Teste seus conhecimentos sobre a história, evolução e principais nomes do tênis de mesa
+                        brasileiro
+                    </p>
+                </div>
+
+                <div class="card">
+
+                    <button id="btnIniciarQuiz" class="btn-iniciar" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+                    <div id="placar" class="placar">
+
+                        <div class="placar-card">
+                            <h3>Acertos</h3>
+                            <span id="spanCertas">0</span>
+                        </div>
+
+                        <div class="placar-card">
+                            <h3>Erros</h3>
+                            <span id="spanErradas">0</span>
+                        </div>
+
+                        <div class="placar-card">
+                            <h3>Pontuação</h3>
+                            <span id="spanPontuacao">0</span>
+                        </div>
+
+                    </div>
+
+                    <div id="jogo">
+
+                        <div class="info-questao">
+                            <span> Questão <span id="spanNumeroDaQuestaoAtual">*</span> de <span
+                                    id="qtdQuestoes">*</span></span>
+
+                            <span id="statusResposta">Escolha uma alternativa</span>
+                        </div>
+
+                        <div class="pergunta">
+                            <h2 id="spanQuestaoExibida"></h2>
+                        </div>
+
+                        <div class="opcoes">
+                            <div class="opcao" id="boxOpcaoA">
+                                <input type="radio" id="primeiraOpcao" name="option" value="alternativaA">
+                                <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+                            </div>
+
+                            <div class="opcao" id="boxOpcaoB">
+                                <input type="radio" id="segundaOpcao" name="option" value="alternativaB">
+                                <label for="segundaOpcao" id="labelOpcaoDois"></label>
+                            </div>
+
+                            <div class="opcao" id="boxOpcaoC">
+                                <input type="radio" id="terceiraOpcao" name="option" value="alternativaC">
+                                <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+                            </div>
+
+                            <div class="opcao" id="boxOpcaoD">
+                                <input type="radio" id="quartaOpcao" name="option" value="alternativaD">
+                                <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+                            </div>
+                        </div>
+
+                        <div class="botoes-quiz">
+
+                            <button class="btn-submeter" onclick="submeter()" id="btnSubmeter"> Submeter resposta
+                            </button>
+
+                            <button class="btn-proximo" onclick="avancar()" id="btnProx" disabled> Próxima questão
+                            </button>
+
+                            <button class="btn-reiniciar" onclick="tentarNovamente()" id="btnTentarNovamente" disabled>
+                                Tentar novamente </button>
+
+                        </div>
+
+                    </div>
+
+                    <div id="resultadoFinal" class="resultado-final">
+                        <h2>Resultado Final</h2>
+                        <p id="msgFinal"></p>
+                    </div>
+
+                </div>
+            </main>
+        </section>
+    </div>
+</body>
+
+</html>
+<script>
+    const listaDeQuestoes = [
+        {
+            pergunta: "Em qual país o tênis de mesa surgiu?",
+            alternativaA: "Brasil",
+            alternativaB: "Inglaterra",
+            alternativaC: "Japão",
+            alternativaD: "Estados Unidos",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual era um dos nomes populares do tênis de mesa?",
+            alternativaA: "Pingue-pongue",
+            alternativaB: "Vôlei de mesa",
+            alternativaC: "Mini tênis",
+            alternativaD: "Raquetebol",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual cidade brasileira teve destaque na chegada do tênis de mesa ao Brasil?",
+            alternativaA: "São Paulo",
+            alternativaB: "Salvador",
+            alternativaC: "Brasília",
+            alternativaD: "Manaus",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual atleta brasileiro é um dos maiores nomes do tênis de mesa nacional?",
+            alternativaA: "Pelé",
+            alternativaB: "Ayrton Senna",
+            alternativaC: "Hugo Calderano",
+            alternativaD: "Oscar Schmidt",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "O que o tênis de mesa exige muito dos jogadores?",
+            alternativaA: "Força física extrema",
+            alternativaB: "Reflexo, estratégia e precisão",
+            alternativaC: "Altura acima da média",
+            alternativaD: "Contato físico constante",
+            alternativaCorreta: "alternativaB"
+        }
+    ];
+
+    let numeroDaQuestaoAtual = 0;
+    let pontuacaoFinal = 0;
+    let certas = 0;
+    let erradas = 0;
+    let quantidadeDeQuestoes = listaDeQuestoes.length;
+
+    function esconderQuiz() {
+        document.getElementById("placar").style.display = "none";
+        document.getElementById("jogo").style.display = "none";
+        document.getElementById("resultadoFinal").style.display = "none";
+    }
+
+    function iniciarQuiz() {
+        document.getElementById("btnIniciarQuiz").style.display = "none";
+        document.getElementById("placar").style.display = "grid";
+        document.getElementById("jogo").style.display = "block";
+
+        document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
+
+        preencherQuestao(0);
+
+        btnSubmeter.disabled = false;
+        btnProx.disabled = true;
+        btnTentarNovamente.disabled = true;
+    }
+
+    function preencherQuestao(index) {
+        limparCores();
+        desmarcarRadioButtons();
+        habilitarAlternativas(true);
+
+        const questaoAtual = listaDeQuestoes[index];
+
+        numeroDaQuestaoAtual = index;
+
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+
+        document.getElementById("statusResposta").innerHTML = "Escolha uma alternativa";
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option");
+        let escolheu = false;
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                escolheu = true;
+            }
+        }
+
+        if (!escolheu) {
+            alert("Escolha uma alternativa antes de submeter.");
+        } else {
+            btnSubmeter.disabled = true;
+            btnProx.disabled = false;
+
+            habilitarAlternativas(false);
+            checarResposta();
+        }
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+        const respostaCorreta = questaoAtual.alternativaCorreta;
+        const options = document.getElementsByName("option");
+
+        let boxCorreta = pegarBoxDaAlternativa(respostaCorreta);
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+
+                if (options[i].value == respostaCorreta) {
+                    document.getElementById(boxCorreta).classList.add("correta");
+
+                    pontuacaoFinal++;
+                    certas++;
+
+                    document.getElementById("statusResposta").innerHTML = "Resposta correta!";
+                } else {
+                    let boxErrada = pegarBoxDaAlternativa(options[i].value);
+
+                    document.getElementById(boxErrada).classList.add("errada");
+                    document.getElementById(boxCorreta).classList.add("correta");
+
+                    erradas++;
+
+                    document.getElementById("statusResposta").innerHTML = "Resposta incorreta!";
+                }
+            }
+        }
+
+        document.getElementById("spanCertas").innerHTML = certas;
+        document.getElementById("spanErradas").innerHTML = erradas;
+        document.getElementById("spanPontuacao").innerHTML = pontuacaoFinal;
+    }
+
+    function pegarBoxDaAlternativa(alternativa) {
+        if (alternativa == "alternativaA") {
+            return "boxOpcaoA";
+        } else if (alternativa == "alternativaB") {
+            return "boxOpcaoB";
+        } else if (alternativa == "alternativaC") {
+            return "boxOpcaoC";
+        } else {
+            return "boxOpcaoD";
+        }
+    }
+
+    function avancar() {
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            numeroDaQuestaoAtual++;
+            preencherQuestao(numeroDaQuestaoAtual);
+
+            btnSubmeter.disabled = false;
+            btnProx.disabled = true;
+        } else {
+            finalizarJogo();
+        }
+    }
+
+    function finalizarJogo() {
+        document.getElementById("jogo").style.display = "none";
+        document.getElementById("resultadoFinal").style.display = "block";
+
+        let porcentagem = (pontuacaoFinal / quantidadeDeQuestoes) * 100;
+        let mensagem = "";
+
+        if (porcentagem <= 30) {
+            mensagem = "Você acertou " + pontuacaoFinal + " de " + quantidadeDeQuestoes +
+                " questões. É um bom começo, mas vale revisar mais sobre a história do tênis de mesa.";
+        } else if (porcentagem < 90) {
+            mensagem = "Você acertou " + pontuacaoFinal + " de " + quantidadeDeQuestoes +
+                " questões. Muito bom! Você já conhece bastante sobre o tema.";
+        } else {
+            mensagem = "Você acertou " + pontuacaoFinal + " de " + quantidadeDeQuestoes +
+                " questões. Excelente! Você mandou muito bem no quiz.";
+        }
+
+        document.getElementById("msgFinal").innerHTML =
+            mensagem + "<br><br>Porcentagem de acerto: <strong>" + Math.round(porcentagem) + "%</strong>";
+
+        btnTentarNovamente.disabled = false;
+
+        salvarResultadoQuiz(porcentagem);
+    }
+
+    function salvarResultadoQuiz(porcentagem) {
+        let resultados = JSON.parse(localStorage.getItem("resultadosQuizTenis"));
+
+        if (resultados == null) {
+            resultados = [];
+        }
+
+        resultados.push({
+            acertos: certas,
+            erros: erradas,
+            totalQuestoes: quantidadeDeQuestoes,
+            porcentagem: Math.round(porcentagem)
+        });
+
+        localStorage.setItem("resultadosQuizTenis", JSON.stringify(resultados));
+    }
+
+    function tentarNovamente() {
+        window.location.reload();
+    }
+
+    function habilitarAlternativas(valor) {
+        primeiraOpcao.disabled = !valor;
+        segundaOpcao.disabled = !valor;
+        terceiraOpcao.disabled = !valor;
+        quartaOpcao.disabled = !valor;
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function limparCores() {
+        document.getElementById("boxOpcaoA").classList.remove("correta", "errada");
+        document.getElementById("boxOpcaoB").classList.remove("correta", "errada");
+        document.getElementById("boxOpcaoC").classList.remove("correta", "errada");
+        document.getElementById("boxOpcaoD").classList.remove("correta", "errada");
+    }
+
+</script>
