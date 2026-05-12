@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash</title>
     <link rel="stylesheet" href="dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 <body>
     <div class="sidebar">
         <div class="logo">
@@ -14,8 +18,8 @@
         </div>
 
         <div class="menu">
-            <!-- <button class="btn" onclick="location.href='dashGeral copy 2.html'">Dashboard Geral</button>
-            <button class="btn" onclick="location.href='dashEspecifica copy 2.html'">Dashboard Específica</button> -->
+            <button class="btn" onclick="location.href='quiz.html'">Quiz</button>
+            <button class="btn" onclick="location.href='dash.html'">Dashboard</button>
         </div>
 
         <button class="btn">Sair</button>
@@ -24,20 +28,94 @@
     <main>
 
         <div class="conjKpi">
-        
+
+
             <div class="kpi contKpi">
-                <h1>Acertos</h1>
-                <span id="id.acertos">--</span>
+                <h1>Questão 1</h1>
+                <span id="id.acertosq1">--</span>
+                <p>Quantidade de acertos</p>
             </div>
 
+            <div class="kpi contKpi">
+                <h1>Questão 2</h1>
+                <span id="id.acertosq2">--</span>
+                <p>Quantidade de acertos</p>
+
+            </div>
+
+            <div class="kpi contKpi">
+                <h1>Questão 3</h1>
+                <span id="id.acertosq3">--</span>
+                <p>Quantidade de acertos</p>
+
+            </div>
+
+            <div class="kpi contKpi">
+                <h1>Questão 4</h1>
+                <span id="id.acertosq4">--</span>
+                <p>Quantidade de acertos</p>
+
+            </div>
+
+            <div class="kpi contKpi">
+                <h1>Questão 5</h1>
+                <span id="id.acertosq5">--</span>
+                <p>Quantidade de acertos</p>
+
+            </div>
 
         </div>
+        <div class="conteudo">
 
+            <div class="Areagraficos">
+                <div class="fundinho">
+                    <h1>Respostas Gerais</h1>
+                    <p>Respostas gerais das perguntas do quiz sobre tênis de mesa</p>
+                    <div class="grafico">
+                        <canvas id="graficoRespostas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kpis2">
+
+                <div class="kpi contKpi">
+                    <h1>Total de Respostas</h1>
+                    <span id="id.ttrespostas">--</span>
+                </div>
+
+                <div class="kpi contKpi">
+                    <h1>Melhor Pontuação</h1>
+                    <span id="id.bestpontuacao">--</span>
+                </div>
+            </div>
+
+        </div>
 
     </main>
 
 </body>
+
 </html>
 <script>
-    document.getElementById("id.acertos").innerHTML = `23`;
+
+    const grafRespostas = document.getElementById('graficoRespostas');
+
+    new Chart(grafRespostas, {
+        type: 'bar',
+        data: {
+            labels: ['Questão 1', 'Questão 2', 'Questão 3', 'Questão 4', 'Questão 5'],
+            datasets: [{
+                label: 'Questões',
+                data: [12, 19, 3, 5, 2],
+                borderWidth: 1,
+                borderColor: "black"
+
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
 </script>

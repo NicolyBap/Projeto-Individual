@@ -7,7 +7,7 @@
     font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-main{
+main {
     margin-left: 240px;
     padding: 10px;
     height: 100vh;
@@ -67,13 +67,14 @@ main{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 .kpi {
     background-color: #081221;
     border-radius: 18px;
-    width: 150px;
-    height: 120px;
+    width: 200px;
+    height: 150px;
 }
 
 .contKpi {
@@ -81,9 +82,64 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white
+    color: white ;
+     gap: 5px;
+
+}
+
+.contKpi p {
+    text-align: center;
+    font-size: 12px;
 }
 
 .contKpi span {
     margin-top: 20px;
+}
+
+.Areagraficos {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin-top: 25px;
+}
+
+.fundinho{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    width: 650px;
+    height: 500px;
+    gap: 20px;
+    border-radius: 12px;
+}
+
+.grafico {
+    width: 600px;
+    height: 350px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.kpis2 {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.kpis2 .kpi {
+    background-color: #081221;
+    border-radius: 18px;
+    width: 400px;
+    height: 200px;
 }
