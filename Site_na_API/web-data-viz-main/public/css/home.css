@@ -36,6 +36,8 @@ body {
 
 .header h1 {
     margin: 0;
+    cursor: pointer;
+
 }
 
 .header img {
@@ -62,6 +64,7 @@ button {
     border-radius: 10px;
     font-weight: bold;
     text-align: center;
+    cursor: pointer;
 
 }
 
